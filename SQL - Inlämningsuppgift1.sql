@@ -20,7 +20,7 @@ USE FailSafe_IT_Uppgift;
 GO
 
 
--- ********************
+/* ******************************** */
 
 CREATE TABLE [Consultants] (
   [Id] INT IDENTITY(1,1) PRIMARY KEY,
@@ -54,7 +54,8 @@ CREATE TABLE [Assignments] (
       REFERENCES [Clients]([Id])
 );
 
--- ********************
+/* ******************************** */
+
 -- 2.
 
 
@@ -96,6 +97,27 @@ insert into Assignments (ClientId, ConsultantId, StartDate, FinishDate, Task) va
 insert into Assignments (ClientId, ConsultantId, StartDate, FinishDate, Task) values (8, 8, '2026-05-01', '2026-11-13', 'API integration and secure authentication');
 
 
+/* ******************************** */
 
 -- 3.
 
+-- A.
+
+SELECT FirstName, HourlyRate FROM Consultants
+WHERE HourlyRate > 1200
+ORDER BY HourlyRate DESC;
+
+-- B.
+
+--Fråga B: Visa en sammanställning över alla uppdrag. Listan måste innehålla
+--kundens företagsnamn, konsultens namn, samt start- och slutdatum för
+--uppdraget (Tips: Använd JOIN).
+
+SELECT Company, FirstName + ' ' + LastName, StartDate, FinishDate 
+FROM Assignments a
+INNER JOIN Company 
+
+
+
+
+-- C.

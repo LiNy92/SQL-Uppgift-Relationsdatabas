@@ -109,15 +109,50 @@ ORDER BY HourlyRate DESC;
 
 -- B.
 
---Fråga B: Visa en sammanställning över alla uppdrag. Listan måste innehålla
---kundens företagsnamn, konsultens namn, samt start- och slutdatum för
---uppdraget (Tips: Använd JOIN).
-
-SELECT Company, FirstName + ' ' + LastName, StartDate, FinishDate 
+SELECT  c. Company, 
+        co.FirstName + ' ' + co.LastName AS ConsultantName,
+        a.Task, a.StartDate, a.FinishDate 
 FROM Assignments a
-INNER JOIN Company 
-
-
-
+INNER JOIN Clients c ON a.ClientId = c.id
+INNER JOIN Consultants co ON a.ConsultantId = co.Id
 
 -- C.
+
+SELECT c.Company, COUNT(a.ClientId) AS NumbersOfAssignments
+FROM Clients c
+LEFT JOIN Assignments a ON c.Id = a.ClientId
+GROUP BY c.Company;
+
+-- D.
+
+BEGIN TRANSACTION
+UPDATE Consultants
+SET HourlyRate = 1500
+WHERE Id = 5
+
+SELECT * From Consultants   -- Gör en BEGIN TRANSACTION följt av SELECT (med möjlighet till ROLLBACK) för att kontrollera 
+                            -- att rätt konsult fått uppdaterat timpris innan jag gör en Commit
+COMMIT  -- Låser in nya timpriset på Consolut med id = 5 .
+
+
+-- E.
+-- Startar även här med en BEGIN TRANSACTION för kontroll att rätt tas bort innan jag gör en COMMIT
+
+
+--BEGIN TRANSACTION              -- Gjorde ett test här på en kund som hade pågående uppdrag för att kontrollera att 
+--DELETE FROM Clients             -- det inte gick att ta bort en sådan kund. Körde sen en ROLLBACK och tog bort en utan uppdrag.
+--WHERE Id = 1;
+
+--SELECT * FROM Clients
+
+--ROLLBACK 
+
+--SELECT * FROM Clients
+
+BEGIN TRANSACTION
+DELETE FROM Clients
+WHERE Id = 9;
+
+SELECT * FROM Clients
+
+COMMIT

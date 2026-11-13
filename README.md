@@ -13,10 +13,9 @@ Assignment-tabellen, kopplingstabellen, hanterar relationen mellan dessa. Varje 
 Det gör däremot att en konsult inte kan ta nytt uppdrag hos samma kund över tid men i detta fall är det detta som har efterfrågats. En lösning på det hade annars varit att uppdragen har ett eget Id som primärnyckel och att kund- och kusult-id endast fungarade som främmande nycklar i tabellen. 
 
 ## DevSevOps-reflektioner
-1. Sec: Om din databas nås via en publik webbapplikation, på vilket sätt skyddar du systemet så att en angripare inte kan skriva skadlig SQL-kod i ett inmatningsfält och radera hela din databas (SQL Injection)?
-   Svar: Genom parametrisering, separera kommandots struktur från datan. Detta med hjälp av platshållare så att kommandot från användaren skickas in som en parameter. Databasen söker då efter parameterns värde oavsett vad den innhåller för eventuell skadlig kod utan att agera på den. 
+Sec: Om din databas nås via en publik webbapplikation, på vilket sätt skyddar du systemet så att en angripare inte kan skriva skadlig SQL-kod i ett inmatningsfält och radera hela din databas (SQL Injection)?
+Svar: Genom parametrisering, separera kommandots struktur från datan. Detta med hjälp av platshållare så att kommandot från användaren skickas in som en parameter. Databasen söker då efter parameterns värde oavsett vad den innhåller för eventuell skadlig kod utan att agera på den. 
 
-
-2. Ops: Om FailSafe IT växer till tusentals kunder och miljontals uppdrag, vilken databasfunktion bör du implementera på tabellerna för att säkerställa att sökningar efter specifika organisationsnummer fortfarande går blixtsnabbt?
-   Svar: Genom att implementera index. Exempelvis Non-Clustered Index för att skapa en sorterad sökväg. 
+Ops: Om FailSafe IT växer till tusentals kunder och miljontals uppdrag, vilken databasfunktion bör du implementera på tabellerna för att säkerställa att sökningar efter specifika organisationsnummer fortfarande går blixtsnabbt?
+Svar: Genom att implementera index. Exempelvis Non-Clustered Index för att skapa en sorterad sökväg. 
  

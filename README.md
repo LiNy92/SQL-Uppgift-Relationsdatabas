@@ -1,6 +1,6 @@
 # Inlämningsuppgift 1 - Relationsdatabas
 
-## Normalisering: 
+## Normalisering
 
 Kolumnerna i tabellen syftar direkt på tabellens huvudämne. Kunder är strukturerad med att fylla på uppgifter om organisationsnummer, företagsnamn, e-post och telefonnummer. Denna har en egen primärnyckel. Därefter är konsulterna strukturerade i en egen tabell med egen primärnyckel där uppgifter som personnr, namn, timpris och huvudsakliga specialitet är angivet. Respektive tabell samlar sin egen unika information. 
 
